@@ -7,7 +7,7 @@
 // modify this script to use the first day of the month the user selects in place of the const today 
 
 function printCalendar(){
-    const today = new Date()
+    const today = new Date() // I know i need to get the value from document.getElementById("year"), but i am not sure how to access that value using this. I know I can't use .value, or results
 const month = today.getMonth()
 let days 
 switch (month) { 
@@ -58,6 +58,6 @@ for(i = 0; i > MonthNames.length; i++){
     option.text = MonthNames[i]
     document.querySelector("#monthSelect").add(option)
 }
-printCalendar()
+document.getElementById("go").addEventListener("click", printCalendar())
     
     
