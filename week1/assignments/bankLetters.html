@@ -39,13 +39,14 @@
             newDiv.setAttribute("class", "letter")
 
                 if(customers[i].balance > 0)
-                letterText = "Hello" + [customers[i].fname] + ", this is an attempt to collect a debt owed to" + [bankName] + ". Your account is past due by the amount of " + [customers[i].balance] +"."
+                letterText = "Hello " + [customers[i].fname] + ", this is an attempt to collect a debt owed to " + [bankName] + ". Your account is past due by the amount of $" + [customers[i].balance] +"."
                     else if (customers[i].balance < 0){
-                        letterText = "Hello" + [customers[i].fname] + ", greetings from" + [bankName] +". Because you are such a great customer, we're lowering your interest rate to " + [customers[i].rate]% + "." 
+                        letterText = "Hello " + [customers[i].fname] + ", greetings from " + [bankName] +". Because you are such a great customer, we're lowering your interest rate to " + [customers[i].rate] + "%." 
                     }
                         else{
-                            letterText =  "Hello" + [customers[i].fname] + ", greetings from " + [bankName] + ". Your balance is current. No need for action until next month." 
+                            letterText =  "Hello " + [customers[i].fname] + ", greetings from " + [bankName] + ". Your balance is current. No need for action until next month." 
                         }
+                        newDiv.innerText = letterText
                         document.getElementById('letterDiv').appendChild(newDiv)
                         console.log(letterText)
                     

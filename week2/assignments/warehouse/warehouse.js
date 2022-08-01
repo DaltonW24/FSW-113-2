@@ -23,52 +23,54 @@ const parts = [
 ]
 
 // list of each part number and qty for check-off in the "detailsList" element
-
-    let result = parts.filter(ShowNumAndQNT)
-
-    function ShowNumAndQNT(parts){
-        return parts.partNbr + parts.qty
-        
-    }
-    document.getElementById('detailsList').append(result)
+ 
+    parts.forEach(function listPart(part){
+        let checkBoxText = `<input type= "checkbox" id = "Checkbox"> ${part.qty} (${part.partNbr}) - ${part.partDescr} </input><br>`
+        document.getElementById("detailsList").innerHTML+= checkBoxText 
+    })
 // if parts requiring special handling exist (in aisle B3), list of items needing 
 // special packaging in the "specialPackaging" element, else remove element
 
-    for(i = 0; i > parts.length; i++){
-        if(parts.aisle == "B3"){
-            document.getElementById("specialPackaging").textContent = parts.partDescr
+    function showLis(part){
+        let li = document.createElement("li");
+        let specialPack = document.getElementById("specialPackaging")
+        li.innerHTML += `${part.aisle} (${part.partDescr})`
+        specialPack.appendChild(li)        
     }
-}
-
-
+    
 // if hazardous parts exist (in aisle J4), let employee know in the "hazardousMaterials"
 // element and remind them to get gloves, else remove element
  
-    for(i = 0; i > parts.length; i++){
-        if(parts.aisle == "J4"){
-            document.getElementById("hazardousMaterials").textContent = parts.partDescr + " Get Gloves when handling"   
-    }
-}
+    parts.filter(function showDanger(part){
+        let hazard = document.getElementById("hazardousMaterials")
+        let hazardText = `<p class= "hazardText ${part.partNbr} (${part.qty})" </p>`
+        hazard.innerHTML += hazardText
+    })
 
 // if all items in the order are small parts (aisle H1), then let employee know that they should take 
 // a basket and go dirctly to aisle H1
 
 
-    for(i = 0; i > parts.length; i++){  
-        if(parts.aisle == "H1"){
-            console.log("Take a basket to aisle H1")
-    }
-}
+    parts.every(function small(part){
+        if (part.aisle === "H1");
+        let message = "Take a basket to aisle H1"
+        document.getElementById("smallItemsOnly").innerHTML = message
+
+    })
 
 
 // if there are large items (anthing in aisles S, T, or U), then let the employee know in the "forkiftNeeded"
 // element that they will need to reserve a forklift, else remove the element
 
-    for(i = 0; i > parts.length; i++){  
-        if(parts.aisle = "T", "S", "U"){
-            console.log("Forklift Needed")
-    }
-}
+   parts.some(function largeOnly(part){
+        if (part.aisle = "S", "T", "U");
+        let message2 = "You will need to reserve a forklift"
+        document.getElementById("forkliftNeeded").innerHTML = message2
+   })
 
 
 // sum up the total number of parts and append that number to the text already in "totalItems" element
+   parts.reduce(function sumUp(part){
+        if (document.getElementById("Checkbox").checked == true);
+            document.getElementById('totalItems')
+   })
