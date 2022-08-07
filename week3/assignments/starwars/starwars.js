@@ -6,7 +6,7 @@
 
 function getFromSWAPI() {
     // assign values to any necessary variables
-    fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
+    let fetchData = fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
     .then(function (response) {
         return response.json()
     })
@@ -14,9 +14,13 @@ function getFromSWAPI() {
         updateInfo(data)
     })
     .catch(function(err) {
-        console.warn(err)
+        console.warn(err) 
     })
 }
+function fetchData(){
+    
+}
+
 
 // create a new function called 'updateInfo()' that receives the data from 
 // the call to that function (see above). Use logic to write the appropriate
