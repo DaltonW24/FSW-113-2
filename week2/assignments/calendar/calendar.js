@@ -7,7 +7,11 @@
 // modify this script to use the first day of the month the user selects in place of the const today 
 
 function printCalendar(){
-    
+// In my last attempt we noticed that it would just add another calendar whenever we pressed the go button. 
+//Do i need to clear the array up here, or would i do it at the end of the function?
+//I did some reading on how to go about clearing the values and this was the best i coudl find
+// https://www.codehim.com/date-time/dynamic-calendar-in-javascript-with-example/
+// It was helpful seeing the calendar written this way, but not helpful for this specifically    
     const today = new Date(`${ document.querySelector("#monthSelect").value} 1,${document.getElementById("year").value} `) 
     console.log(`${ document.querySelector("#monthSelect").value} 1,${document.getElementById("year").value} `)
     const month = today.getMonth()
