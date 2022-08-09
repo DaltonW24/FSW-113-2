@@ -31,46 +31,79 @@ const parts = [
 // if parts requiring special handling exist (in aisle B3), list of items needing 
 // special packaging in the "specialPackaging" element, else remove element
 
-    function showLis(part){
+    let filteredArray = parts.filter(function filtered(part){
+        return part.aisle === "B3"
+    })
+    console.log(filteredArray)
+    filteredArray.forEach(function  showFilter(part){
         let li = document.createElement("li");
-        let specialPack = document.getElementById("specialPackaging")
-        li.innerHTML += `${part.aisle} (${part.partDescr})`
-        specialPack.appendChild(li)        
-    }
+        let specialPack = document.querySelector("#specialPackaging");
+        li.innerHTML += `${part.partNbr} (${part.qty})`
+        specialPack.appendChild(li)
+    })
     
 // if hazardous parts exist (in aisle J4), let employee know in the "hazardousMaterials"
 // element and remind them to get gloves, else remove element
  
-    parts.filter(function showDanger(part){
-        let hazard = document.getElementById("hazardousMaterials")
-        let hazardText = `<p class= "hazardText ${part.partNbr} (${part.qty})" </p>`
-        hazard.innerHTML += hazardText
+    let hazard = parts.find(function glovesNeeded(part){
+        return part.aisle === "J4"
     })
-
+    console.log(hazard)
+    if(hazard){
+        document.getElementById("hazardousMaterials").innerHTML += "<br> Get gloves <br>"
+    }
+    else{
+        document.getElementById("hazardousMaterials").remove()
+    }
 // if all items in the order are small parts (aisle H1), then let employee know that they should take 
 // a basket and go dirctly to aisle H1
 
 
-    parts.every(function small(part){
-        if (part.aisle === "H1");
-        let message = "Take a basket to aisle H1"
-        document.getElementById("smallItemsOnly").innerHTML = message
-
+    let smallPartsOnly = parts.some(function smallOnly(part){
+        return part.aisle ==='H1'
     })
+    console.log(smallPartsOnly)
+    if (smallPartsOnly){
+        document.querySelector("#smallItemsOnly").innerHTML += "<br> Bring a basket and go directly to H1 <br>"
+    }
+
+    
 
 
 // if there are large items (anthing in aisles S, T, or U), then let the employee know in the "forkiftNeeded"
 // element that they will need to reserve a forklift, else remove the element
 
-   parts.some(function largeOnly(part){
-        if (part.aisle = "S", "T", "U");
-        let message2 = "You will need to reserve a forklift"
-        document.getElementById("forkliftNeeded").innerHTML = message2
+   let largerItems1 = parts.some(function largeFind(part){
+    return part.aisle === "S"
    })
+   let largerItems2 = parts.some(function largeFind(part){
+    return part.aisle === "T"
+   })
+   let largerItems3 = parts.some(function largeFind(part){
+    return part.aisle === "U"
+   })
+    if(largerItems1, largerItems2, largerItems3){
+        document.querySelector("${forkliftNeeded").innerHTML += "forklift needed"
+    }
 
 
 // sum up the total number of parts and append that number to the text already in "totalItems" element
-   parts.reduce(function sumUp(part){
-        if (document.getElementById("Checkbox").checked == true);
-            document.getElementById('totalItems')
-   })
+            // i looked on w3 schools how to use reduce, and this is what i found. 
+            //I have tried to write this out a few ways after looking at this. My first attempts will be below.
+
+// const numbers = [175, 50, 25]; 
+
+            //  (I think my version of this would be
+            // document.querySelector("#detailsList") because that is where my checkboxes are)
+
+// document.getElementById("demo").innerHTML = numbers.reduce(myFunc);
+
+            //i think this is document.querySelector("#totalItems") since this is what i'm tring to fill
+            //document.querySelector("#totalItems").innerHTML = document.querySelector("#detailsList").reduce(func)
+
+
+// function myFunc(total, num) {
+//   return total - num;
+// }
+            //I know i have to get the .checked value to get the options that are selected. but when i used some it doesn't let me do it.  
+    

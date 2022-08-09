@@ -7,22 +7,24 @@
 // modify this script to use the first day of the month the user selects in place of the const today 
 
 function printCalendar(){
-    const today = new Date() // I know i need to get the value from document.getElementById("year"), but i am not sure how to access that value using this. I know I can't use .value, or results
-const month = today.getMonth()
-let days 
-switch (month) { 
-    case 1:
-        days = 28
-        break
-    case 3:
-    case 5:
-    case 8: 
-    case 10: 
-        days = 30
-        break
-    default:
-        days = 31
-}
+    
+    const today = new Date(`${ document.querySelector("#monthSelect").value} 1,${document.getElementById("year").value} `) 
+    console.log(`${ document.querySelector("#monthSelect").value} 1,${document.getElementById("year").value} `)
+    const month = today.getMonth()
+    let days 
+    switch (month) { 
+        case 1:
+            days = 28
+            break
+        case 3:
+        case 5:
+        case 8: 
+        case 10: 
+            days = 30
+            break
+        default:
+            days = 31
+    }
     
 let x
 const weekday = today.getDay()
@@ -53,11 +55,13 @@ while ( y < remainder) {
 
 
 const MonthNames = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-for(i = 0; i > MonthNames.length; i++){
+for(i = 0; i < MonthNames.length; i++){
     var option = document.createElement("option")
     option.text = MonthNames[i]
     document.querySelector("#monthSelect").add(option)
 }
-document.getElementById("go").addEventListener("click", printCalendar())
+const today = new Date()
+document.querySelector("#year").value = today.getFullYear()
+document.getElementById("go").addEventListener("click", printCalendar)
     
-    
+    printCalendar()
