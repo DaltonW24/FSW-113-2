@@ -14,7 +14,7 @@ function getFromSWAPI() {
         updateInfo(data)
     })
     .catch(function(err) {
-        console.warn(err) 
+        console.warn(err)
     })
 }
 function fetchData(){
@@ -27,3 +27,6 @@ function fetchData(){
 //labels to 'dataLabel1' and 'dataLabel2' elements in starwars.html, as well
 // as the appropriate values from the data object to the 'dataValue1' and 
 // 'dataValue2' elements in starwars.html.
+function updateInfo(){
+    
+}

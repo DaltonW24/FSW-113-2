@@ -38,7 +38,7 @@ const parts = [
     filteredArray.forEach(function  showFilter(part){
         let li = document.createElement("li");
         let specialPack = document.querySelector("#specialPackaging");
-        li.innerHTML += `${part.partNbr} (${part.qty})`
+        li.innerHTML += `Item: ${part.partNbr} / Qty: ${part.qty}`
         specialPack.appendChild(li)
     })
     

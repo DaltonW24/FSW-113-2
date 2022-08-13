@@ -1,15 +1,17 @@
 // declare each of the variables marked with "**" in the appropriate scope and using the appropriate type
 let mean = 0
+let gradeSlice = 0
 
 // create an event listener that calls the curveGrade() function when the Curve It!! button is clicked
-document.getElementById("submit").addEventListener("click", curveGrades())
-
+document.getElementById("submit").addEventListener("click", curveGrades)
+curveGrades()
 // create an event listener that resets the scores and grades to their defaults when the Reset button is clicked
-let resets = document.getElementById("reset")
-document.getElementById("reset").addEventListener('click', function(){
-    if(reset.value != " ")
-    reset.value = " "
-})
+document.getElementById("reset").addEventListener("click", clear)
+
+function clear(){
+    document.getElementById("scores").innerHTML = document.getElementById("grades").value
+}
+
 
 function applyBell(grade, index, ary) {
     switch (true) {
@@ -45,29 +47,19 @@ function convertArray(obj) {
 // empty lines, can you get the number of lines down to 8?
 
 function curveGrades() {
-    sum =  (accumulator, currentValue) => accumulator + currentValue
-    
-
-    sumGrades = array => array.reduce(sum)
-    
-
+    const sum =  (accumulator, currentValue) => accumulator + currentValue
+    const sumGrades = array => array.reduce(sum)
     var aryGrades = convertArray(document.querySelector('#scores'))
-
-    minGrade = aryGrades.reduce((a, b) =>  Math.min(a, b))
-    
-    
-    maxGrade = aryGrades.reduce((a, b) => Math.max(a, b))
-    
+    var minGrade = aryGrades.reduce((a, b) =>  Math.min(a, b))
+    var maxGrade = aryGrades.reduce((a, b) => Math.max(a, b))
     mean = sumGrades(aryGrades) / aryGrades.length
-
-    let range = maxGrade - minGrade
-
+    
     gradeSlice = range / 5
-
+    let range = maxGrade - minGrade
     aryGrades.forEach(applyBell)
 
     // write the value of aryGrades to the grades div in the HTML document
 
-    document.getElementById(grades.value == aryGrades)
+    document.getElementById("grades").innerText = aryGrades
     
 }
