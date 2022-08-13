@@ -59,12 +59,15 @@ const parts = [
 // a basket and go dirctly to aisle H1
 
 
-    let smallPartsOnly = parts.some(function smallOnly(part){
+    let smallPartsOnly = parts.every(function smallOnly(part){
         return part.aisle ==='H1'
     })
     console.log(smallPartsOnly)
-    if (smallPartsOnly){
-        document.querySelector("#smallItemsOnly").innerHTML += "<br> Bring a basket and go directly to H1 <br>"
+        if (smallPartsOnly){
+            document.querySelector("#smallItemsOnly").innerHTML += "<br> Bring a basket and go directly to H1 <br>"
+    }
+        else{
+            document.getElementById("smallItemsOnly").remove()
     }
 
     
@@ -73,37 +76,23 @@ const parts = [
 // if there are large items (anthing in aisles S, T, or U), then let the employee know in the "forkiftNeeded"
 // element that they will need to reserve a forklift, else remove the element
 
-   let largerItems1 = parts.some(function largeFind(part){
-    return part.aisle === "S"
+   let largerItems = parts.some(function largeFind(part){
+    return part.aisle === "S" || part.aisle === "T"  ||  part.aisle === "U"
    })
-   let largerItems2 = parts.some(function largeFind(part){
-    return part.aisle === "T"
-   })
-   let largerItems3 = parts.some(function largeFind(part){
-    return part.aisle === "U"
-   })
-    if(largerItems1, largerItems2, largerItems3){
-        document.querySelector("${forkliftNeeded").innerHTML += "forklift needed"
+    if(largerItems){
+        document.querySelector("#forkliftNeeded").innerHTML += "forklift needed"
+    }
+    else{
+        document.getElementById("forkliftNeeded").remove()
     }
 
-
 // sum up the total number of parts and append that number to the text already in "totalItems" element
-            // i looked on w3 schools how to use reduce, and this is what i found. 
-            //I have tried to write this out a few ways after looking at this. My first attempts will be below.
+  
+// I was trying to add up the amount of checkboxes that were checked.
 
-// const numbers = [175, 50, 25]; 
+    document.getElementById("totalItems").innerHTML = parts.reduce(addUp, 0);
 
-            //  (I think my version of this would be
-            // document.querySelector("#detailsList") because that is where my checkboxes are)
-
-// document.getElementById("demo").innerHTML = numbers.reduce(myFunc);
-
-            //i think this is document.querySelector("#totalItems") since this is what i'm tring to fill
-            //document.querySelector("#totalItems").innerHTML = document.querySelector("#detailsList").reduce(func)
-
-
-// function myFunc(total, num) {
-//   return total - num;
-// }
-            //I know i have to get the .checked value to get the options that are selected. but when i used some it doesn't let me do it.  
+    function addUp(total, part){
+        return   total + part.qty
+    }
     
