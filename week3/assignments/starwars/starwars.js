@@ -4,12 +4,12 @@
 // the 'queryType' and 'itemID' elements in starwars.html to the function 
 // called 'getFromSWAPI()'
 
-function getFromSWAPI() {
+function getFromSWAPI(queryType, itemID) {
     // assign values to any necessary variables
-    let fetchData = fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
+    const fetchData = fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
     .then(function (response) {
         return response.json()
-    })
+    }) 
     .then(function(data){
         updateInfo(data)
     })
@@ -17,9 +17,12 @@ function getFromSWAPI() {
         console.warn(err)
     })
 }
-function fetchData(){
-    
+function fetchData(queryType, itemID){
+    //i really have no clue what to do here
+    document.getElementById("ResponseData").innerHTML= queryType && itemID
+
 }
+
 
 
 // create a new function called 'updateInfo()' that receives the data from 

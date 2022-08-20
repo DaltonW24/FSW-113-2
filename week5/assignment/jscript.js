@@ -33,4 +33,4 @@ console.log(document.getElementById('certStudentName').value)
 // You can use this function when instantiating the arrays in the student object.
 function toAry(){
 // not really sure where to start on this one.
-}
+} 

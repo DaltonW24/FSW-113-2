@@ -7,6 +7,11 @@
   use the CSS grid to display all five <div> elements contained within
   the 'queryWrapper' <div> on a row next to each other 
   */
+  /*
+  dont we use grid template to set how many rows and colomuns there are?
+  */
+  grid-template-columns: 5;
+  grid-template-rows: 1;
   margin: 0 auto;
 }
 
@@ -19,6 +24,8 @@
   use the CSS grid to display the <div> elements contained within
   the 'dataWrapper' <div> in a 2 x 2 grid 
   */
+  grid-template-columns: 2;
+  grid-template-rows: 2;
   margin: 0 auto;
 }
 
