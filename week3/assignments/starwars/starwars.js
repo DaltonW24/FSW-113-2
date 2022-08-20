@@ -44,6 +44,7 @@ function updateInfo(data){
             else if(queryType === "starships"){
                 document.getElementById("dataValue1").innerHTML = `Starship Name: ${data.name}`
                 document.getElementById("dataValue2").innerHTML = `Cost: ${data.cost_in_credits}`
+                console.log(data.name)
             }
                 else{
                     console.log("Error: not found")
